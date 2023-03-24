@@ -15,12 +15,15 @@ func sortArray(group *sync.WaitGroup, channelIn, channelOut chan []int) {
 
 	// read from channelIn
 	slice := <-channelIn
+	id := fmt.Sprintf("%p", slice)
+	fmt.Printf("Worker[%s]: I'll work with <%s>\n", id, toDisplayList(slice))
+
+	// sort the array
 	sort.Ints(slice)
+	fmt.Printf("Worker[%s]: I'm done with <%s>\n", id, toDisplayList(slice))
 
 	// write to channelOut
 	channelOut <- slice
-
-	// sort the array
 	group.Done()
 }
 
@@ -37,18 +40,48 @@ func toDisplayList(data []int) string {
 	return str
 }
 
+// requestData Prompts the user to enter a number of positive integers
+func requestData(size int) []int {
+
+	var data []int
+	var input int
+
+	fmt.Printf("Main: Please enter %d positive integers.\n", size)
+	for i := 0; i < size; i++ {
+		fmt.Printf("[%d]> ", i+1)
+		_, err := fmt.Scan(&input)
+
+		if err != nil {
+			println("Error: ", err)
+			continue
+		}
+
+		data = append(data, input)
+	}
+
+	return data
+}
+
+// createWorkers creates a slice of workers
+func createWorkers(size int) []func(*sync.WaitGroup, chan []int, chan []int) {
+	var workers []func(*sync.WaitGroup, chan []int, chan []int)
+	for i := 0; i < size; i++ {
+		workers = append(workers, sortArray)
+	}
+	return workers
+}
+
 func main() {
 
-	data := []int{20, 30, 15, 50, 10, 60, 70, 40, 1, 50, 33, 90, -1}
+	// Given
+	data := requestData(12)
 	channelIn := make(chan []int, 4)
 	channelOut := make(chan []int, 4)
 
 	// create 4 workers
 	workersCount := 4
-	var workers []func(*sync.WaitGroup, chan []int, chan []int)
-	for i := 0; i < workersCount; i++ {
-		workers = append(workers, sortArray)
-	}
+	workers := createWorkers(workersCount)
+
 	var wg sync.WaitGroup
 	for _, worker := range workers {
 		wg.Add(1)
@@ -79,6 +112,5 @@ func main() {
 
 	// sort the array
 	sort.Ints(sortedData)
-	println("Sorted Array: ", toDisplayList(sortedData))
-
+	println("Main: result=", toDisplayList(sortedData))
 }
