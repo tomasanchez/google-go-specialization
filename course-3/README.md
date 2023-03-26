@@ -20,3 +20,7 @@ example programs.
   * Channels
 * Week 4: Synchronized communication
   * Threads, concurrency, and synchronization
+
+# Certification
+    
+[![Coursera](https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~MXLYYEA3N6WB/CERTIFICATE_LANDING_PAGE~MXLYYEA3N6WB.jpeg)](https://coursera.org/verify/MXLYYEA3N6WB)
