@@ -12,6 +12,13 @@ needed to create concise, efficient, and clean applications using Go.
 ## Certificates
 
 - [Getting Started with Go](https://www.coursera.org/account/accomplishments/verify/8PHRJNLXA9KE)
+- [Functions, Methods, and Interfaces in Go](https://www.coursera.org/account/accomplishments/verify/VSW4HMGZXEMS)
+- [Concurrency in Go](https://www.coursera.org/account/accomplishments/verify/8PHRJNLXA9KE)
+- [Programming with Google Go](https://coursera.org/verify/specialization/A2GGS9AS8QKG)
+
+
+[![Certificate](https://s3.amazonaws.com/coursera_assets/meta_images/generated/CERTIFICATE_LANDING_PAGE/CERTIFICATE_LANDING_PAGE~A2GGS9AS8QKG/CERTIFICATE_LANDING_PAGE~A2GGS9AS8QKG.jpeg)](https://coursera.org/verify/specialization/A2GGS9AS8QKG)
+
 
 ## License
 
